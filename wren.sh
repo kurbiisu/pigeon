@@ -14,7 +14,7 @@ VERSION="0.0.6"
 SERVER_DIR="/home/minecraft"
 WREN_USER="minecraft"
 # make each name the name of the directory that is inh /home/servers/
-declare -a servers=("allium")
+declare -a servers=("orchid")
 
 if [[ $1 == "help" ]]; then
     echo -e "${A}$PREFIX${R} ${J}wren launcher v${VERSION}"
