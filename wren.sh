@@ -71,7 +71,7 @@ elif [[ $1 == "console" ]]; then
     echo -e "${A}$PREFIX${R} to copy to clipboard always use ${H}ctrl + shift + c${R}."
     echo -e "${A}$PREFIX${R} "
     read -r -p "$(echo -e ${A}$PREFIX${R}" "${G}"press enter to continue")"
-    sudo -u $WREN_USER screen -R $2
+    sudo -u $WREN_USER screen -x $2
 elif [[ $1 == "list" ]]; then
     echo -e "${A}$PREFIX${R} here's all the containers"
     sudo -u $WREN_USER screen -ls
