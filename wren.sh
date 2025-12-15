@@ -9,16 +9,16 @@ H='\033[1;32m'
 R='\033[0m'
 # static
 PREFIX="[wren]"
-VERSION="0.0.6"
+VERSION="0.6"
 # directory for servers
-SERVER_DIR="/home/minecraft"
-WREN_USER="minecraft"
+SERVER_DIR="/home/wren"
+WREN_USER="wren"
 # make each name the name of the directory that is inh /home/servers/
-declare -a servers=("orchid")
+declare -a servers=("magnolia")
 
 if [[ $1 == "help" ]]; then
     echo -e "${A}$PREFIX${R} ${J}wren launcher v${VERSION}"
-    echo -e "${A}$PREFIX${R} (c) 2023-2025 ihateblueb"
+    echo -e "${A}$PREFIX${R} (c) 2023-2026 ihateblueb"
     echo -e "${A}$PREFIX${R} ${J}commands:"
     echo -e "${A}$PREFIX${R}    help    ${G}             ${R}       show this help menu"
     echo -e "${A}$PREFIX${R}    list    ${G}             ${R}       show all running containers"
