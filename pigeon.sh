@@ -20,7 +20,7 @@ declare -a servers=("magnolia")
 
 if [[ $1 == "help" ]]; then
     echo -e "${W}$PREFIX${R} ${J}Pigeon launcher v${VERSION}${R}"
-    echo -e "${W}$PREFIX${R} (c) 2026 orchidtowny"
+    echo -e "${W}$PREFIX${R} (c) 2026 kurbiis"
     echo -e "${W}$PREFIX${R} ${J}commands:${R}"
     echo -e "${W}$PREFIX${R}    help    ${G}             ${R}       show this help menu"
     echo -e "${W}$PREFIX${R}    setup  ${G}             ${R}        setup pigeon"
@@ -35,12 +35,21 @@ if [[ $1 == "help" ]]; then
     for server in ${servers[@]}; do
         echo -e "${W}$PREFIX${R}    $server"
     done
-
 elif [[ $1 == "spawn" ]]; then
     echo -e "${W}$PREFIX${R} spawning $2"
     sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 new-session -d -s "$2" -c "$SERVER_DIR/$2" "sh start.sh"
     chgrp admin /tmp/tmux_$2
     chmod 770 /tmp/tmux_$2
+
+elif [[ $1 == "start" ]]; then
+    echo -e "${W}$PREFIX${R} starting $2"
+    sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "cd $SERVER_DIR/$2" C-m
+    sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "sh start.sh" C-m
+
+elif [[ $1 == "list" ]]; then
+    echo -e "${W}$PREFIX${R} Here's the containers"
+    sudo -u $pigeon_USER tmux list-sessions
+
 else
     echo -e "${W}$PREFIX${R} unknown command. see ${S}$0 help${R} for more"
 fi
