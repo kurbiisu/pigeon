@@ -10,7 +10,7 @@ R="\033[0m"
 S="\033[32m"
 B="\033[1m"
 J='\033[1;34m'
-G="\033[1;30m"
+G="\033[1;37m"
 
 
 # directory for servers
@@ -38,8 +38,8 @@ if [[ $1 == "help" ]]; then
 elif [[ $1 == "spawn" ]]; then
     echo -e "${W}$PREFIX${R} spawning $2"
     sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 new-session -d -s "$2" -c "$SERVER_DIR/$2" "sh start.sh"
-    chgrp admin /tmp/tmux_$2
-    chmod 770 /tmp/tmux_$2
+    sudo chgrp admin /tmp/tmux_$2
+    sudo chmod 770 /tmp/tmux_$2
 
 elif [[ $1 == "start" ]]; then
     echo -e "${W}$PREFIX${R} starting $2"
@@ -53,6 +53,3 @@ elif [[ $1 == "list" ]]; then
 else
     echo -e "${W}$PREFIX${R} unknown command. see ${S}$0 help${R} for more"
 fi
-
-
-
