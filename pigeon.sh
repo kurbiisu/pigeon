@@ -10,7 +10,10 @@ B="\e[1m"
 
 # static
 PREFIX="[pigeon]"
-VERSION="0.1"
+VERSION="1.0-ALPHA"
 
 # directory for servers
+
+pigeon_user="Pigeon"
+SERVER_DIR=$(getent passwd "$pigeon_USER" | cut -d: -f6)
 
