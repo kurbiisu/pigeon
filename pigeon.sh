@@ -49,11 +49,9 @@ elif [[ $1 == "start" ]]; then
 elif [[ $1 == "stop" ]]; then
     echo -e "${W}$PREFIX${R} Stopping $2..."
     sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "stop" C-m
-    
 elif [[ $1 == "list" ]]; then
     echo -e "${W}$PREFIX${R} Here's all the containers."
-    sudo -u $pigeon_USER tmux list-sessions
-
+    sudo -u $pigeon_USER tmux -S /tmp/tmux_$2 list-sessions
 else
     echo -e "${W}$PREFIX${R} Unknown command. See ${S}$0 help${R} for more"
 fi
