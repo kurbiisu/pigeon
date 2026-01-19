@@ -57,6 +57,8 @@ elif [[ $1 == "kill" ]]; then
         sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 kill-session -t "$2"
     elif [[ "${ans,,}" == "n" ]]; then
         echo -e "${W}${PREFIX}${R} Did not kill $2..."
+    else 
+        echo -e "${W}${PREFIX}${R} Something went wrong. Did not kill $2."
     fi
     
 elif [[ $1 == "list" ]]; then
