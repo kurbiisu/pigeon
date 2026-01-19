@@ -1,20 +1,21 @@
-# Pigeon
+# wren
 
-A simple Minecraft server manager for Linux. 
+A simple Minecraft server manager for Linux using tmux. 
 
-# Prerequisites:
+# Usage 
 
-To use Pigeon you need to install `tmux`, most package managers ship this you should follow [this guide](https://github.com/tmux/tmux/wiki/Installing) for your Linux distribution.
-
-Additionally you may need to install `git`, if not already installed.
-
-# Installing Pigeon:
-
+``` git clone github.com/orchidtowny/wren
+    chmod +X ./wren.sh
+    ./wren.sh help (for all commands)
 ```
-git clone github.com/kurbiisu/pigeon
-cd pigeon
-chmod +x ./pigeon.sh 
-```
-
-# Usage
+## Commands
+    help                        Show the help menu
+  ~~setup~~                 ~~Setup pigeon~~
+    list                        Show all running containers
+    spawn   (server name)       Run start script of server in new container
+    start   (server name)       Run start script of server in current container
+    restart (server name)       Run restart script of server
+    stop    (server name)       Run stop script of server
+    kill    (server name)       Kill container of server
+    console (server name)       Open to console of server
 
