@@ -46,6 +46,10 @@ elif [[ $1 == "start" ]]; then
     sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "cd $SERVER_DIR/$2" C-m
     sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "sh start.sh" C-m
 
+elif [[ $1 == "stop" ]]; then
+    echo -e "${W}$PREFIX${R} Stopping $2..."
+    sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "stop" C-m
+    
 elif [[ $1 == "list" ]]; then
     echo -e "${W}$PREFIX${R} Here's all the containers."
     sudo -u $pigeon_USER tmux list-sessions
