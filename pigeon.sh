@@ -49,6 +49,16 @@ elif [[ $1 == "start" ]]; then
 elif [[ $1 == "stop" ]]; then
     echo -e "${W}$PREFIX${R} Stopping $2..."
     sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "stop" C-m
+elif [[ $1 == "kill" ]]; then
+    read -r -p "$(echo -e "${W}${PREFIX}${R} you're about to ${E}${B}kill${R} a process ($2). ${E}${B}this could lead to data corruption${R}, would you like to continue? [y/N] ")" ans
+
+    if [[ "${ans,,}" == "y" ]]; then
+        echo -e "${W}${PREFIX}${R} Killing $2..."
+        sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 kill-session -t "$2"
+    elif [[ "${ans,,}" == "n" ]]; then
+        echo -e "${W}${PREFIX}${R} Did not kill $2..."
+    fi
+    
 elif [[ $1 == "list" ]]; then
     echo -e "${W}$PREFIX${R} Here's all the containers."
     sudo -u $pigeon_USER tmux -S /tmp/tmux_$2 list-sessions
