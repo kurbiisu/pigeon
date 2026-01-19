@@ -49,6 +49,11 @@ elif [[ $1 == "start" ]]; then
 elif [[ $1 == "stop" ]]; then
     echo -e "${W}$PREFIX${R} Stopping $2..."
     sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "stop" C-m
+
+elif [[ $1 == "restart" ]]; then
+    echo -e "${W}$PREFIX${R} Restarting $2..."
+    sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 send-keys -t "$2" "restart" C-m
+
 elif [[ $1 == "kill" ]]; then
     read -r -p "$(echo -e "${W}${PREFIX}${R} you're about to ${E}${B}kill${R} a process ($2). ${E}${B}this could lead to data corruption${R}, would you like to continue? [y/N] ")" ans
 
@@ -60,10 +65,23 @@ elif [[ $1 == "kill" ]]; then
     else 
         echo -e "${W}${PREFIX}${R} Something went wrong. Did not kill $2."
     fi
-    
+
 elif [[ $1 == "list" ]]; then
     echo -e "${W}$PREFIX${R} Here's all the containers."
-    sudo -u $pigeon_USER tmux -S /tmp/tmux_$2 list-sessions
+    sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 list-sessions
+
+elif [[ $1 == "console" ]]; then
+    echo -e "${W}$PREFIX${R} opening console of $2"
+    echo -e "${W}$PREFIX${R} "
+    echo -e "${E}$PREFIX${R} ${E}!! IMPORTWNT !!"
+    echo -e "${W}$PREFIX${R} do not use ${H}ctrl + c${R}."
+    echo -e "${W}$PREFIX${R} to exit a container always use ${H}ctrl + b${R} then ${H}d${R}."
+    echo -e "${W}$PREFIX${R} to copy to clipboard always use ${H}ctrl + shift + c${R}."
+    echo -e "${W}$PREFIX${R} "
+    read -r -p "$(echo -e ${W}$PREFIX${R}" "${G}"press enter to continue")"
+
+    sudo -u "$pigeon_USER" tmux -S /tmp/tmux_$2 attach -t "$2"
+
 else
     echo -e "${W}$PREFIX${R} Unknown command. See ${S}$0 help${R} for more"
 fi
